@@ -22,3 +22,25 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+
+$factory->define(App\Models\StaffDetails::class,function (Faker\Generator $faker){
+
+    return [
+        'id' => $faker->id;
+        'staff_Id' => $faker->unique();
+        'first_Name' => $faker->first_Name;
+         'middle_Name' => $faker->nullable();
+         'last_Name' => $faker->last_Number;
+         'designation' => $faker->designation;
+         'college' => $faker->college;
+         'admin_Post'=> $faker->admin_Post;
+         'tel_No' => $faker->tel_No;
+         'date_Of_Employment' => $faker->date_Of_Employment;
+          'date_Of_Employment' => $faker->date_Of_Employment;
+       'department_Id'=>$faker->department_Id;
+       'application_Number'=>$faker->pplication_Number;
+       'Username'=>$faker->Username;
+ ];
+
+});
