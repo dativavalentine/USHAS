@@ -24,23 +24,46 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 
+
+
 $factory->define(App\Models\StaffDetails::class,function (Faker\Generator $faker){
 
+    $colleges = ['Coict','Coet','Soed','Sjmc'];
+
+
     return [
-        'id' => $faker->id;
-        'staff_Id' => $faker->unique();
-        'first_Name' => $faker->first_Name;
-         'middle_Name' => $faker->nullable();
-         'last_Name' => $faker->last_Number;
-         'designation' => $faker->designation;
-         'college' => $faker->college;
-         'admin_Post'=> $faker->admin_Post;
-         'tel_No' => $faker->tel_No;
-         'date_Of_Employment' => $faker->date_Of_Employment;
-          'date_Of_Employment' => $faker->date_Of_Employment;
-       'department_Id'=>$faker->department_Id;
-       'application_Number'=>$faker->pplication_Number;
-       'Username'=>$faker->Username;
+        'staff_Id' => $faker->unique()->userName,
+        'first_Name' => $faker->firstName,
+         'middle_Name' => $faker->lastName,
+         'last_Name' => $faker->lastName,
+         'designation' => $faker->text,
+         'college' => $colleges[rand(0,3)],
+         'admin_Post'=> $faker->text,
+         'tel_No' => $faker->phoneNumber,
+         'date_Of_Employment' => $faker->dateTimeThisCentury->format('Y-m-d'),
+       'application_Number'=>$faker->randomDigitNotNull,
  ];
 
+});
+
+$factory->define(App\Models\Logins::class,function (Faker\Generator $faker){
+    static $password;
+    $staff = factory(App\Models\StaffDetails::class)->create();
+    return [
+        'username' => $staff->staff_Id,
+        'staff_Id' => $staff->id,
+        'password' => $password ?: $password = bcrypt('secret'),
+    ];
+});
+
+
+$factory->define(App\User::class,function (Faker\Generator $faker){
+
+    static $password;
+    $staff = factory(App\Models\StaffDetails::class)->create();
+    return [
+        'email' => $staff->staff_Id,
+        'staff_Id' => $staff->id,
+        'password' => $password ?: $password = bcrypt('secret'),
+    ];
 });

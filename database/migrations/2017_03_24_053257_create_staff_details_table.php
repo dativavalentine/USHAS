@@ -15,18 +15,16 @@ class CreateStaffDetailsTable extends Migration
     {
         Schema::create('staff_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('staff_Id', 45)->unique();
-            $table->string('first_Name', 60);
-            $table->string('middle_Name', 60)->nullable();
-            $table->string('last_Name', 60);
-            $table->string('designation', 60);
-            $table->string('college', 60);
-            $table->string('admin_Post', 60);
-            $table->string('tel_No', 60);
+            $table->string('staff_Id')->unique();
+            $table->string('first_Name');
+            $table->string('middle_Name')->nullable();
+            $table->string('last_Name');
+            $table->string('designation');
+            $table->string('college');
+            $table->string('admin_Post');
+            $table->string('tel_No');
             $table->date('date_Of_Employment');
-            $table->string('department_Id', 60);
             $table->integer('application_Number');
-            $table->string('Username');
             $table->timestamps();
         });
     }

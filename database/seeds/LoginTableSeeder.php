@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class StaffDetailsTableSeeder extends Seeder
+class LoginTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,7 @@ class StaffDetailsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\StaffDetails::class,10)->create();
+        //
+        factory(App\User::class,5)->create();
     }
 }
