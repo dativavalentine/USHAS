@@ -15,11 +15,11 @@ class CreateHousesTable extends Migration
     {
         Schema::create('houses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('house_Category', 100);
+            $table->string('house_Category');
             $table->integer('no_Of_Bedrooms');
-            $table->string('house_number',50);
+            $table->string('house_number');
             $table->integer('staff_Id')->unsigned();
-            $table->string('location', 100);
+            $table->string('location');
             $table->timestamps();
 
             $table->foreign('staff_Id')->references('id')->on('staff_details')->onDelete('cascade');
