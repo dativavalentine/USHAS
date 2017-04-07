@@ -25,7 +25,7 @@ class ApplicationsRequest extends FormRequest
     {
         return [
             //Return the request
-            'id'=>'required',
+            //'id'=>'required',
             'apply_Date' => 'required',
             'staff_Id' => 'required',
             'application_Type' => 'required',
