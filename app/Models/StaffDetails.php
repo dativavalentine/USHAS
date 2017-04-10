@@ -18,8 +18,8 @@ class StaffDetails extends Model
     ];
 
 
-    public function login(){
-        return $this->hasOne(Logins::class);
+    public function staff(){
+        return $this->hasMany(applications::class);
     }
   public function department(){
         return $this->belongsTo(Department::class);
