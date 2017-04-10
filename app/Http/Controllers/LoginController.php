@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStaffRequest;
+use App\Models\Logins;
 use App\Models\StaffDetails;
 use Illuminate\Http\Request;
 
 
 class LoginController extends Controller
 {
-    public function login(StoreStaffRequest $request){
+    public function login(Request $request){
 
-        $staff = StaffDetails::where('staff_Id','=',$request->id)->get();
+        $matchThese = ['username'=>$request->username,'password'=>$request->password];
+        $staff = Logins::where($matchThese)->get();
 
-        return $staff;
+        return response($staff,200);
     }
 }

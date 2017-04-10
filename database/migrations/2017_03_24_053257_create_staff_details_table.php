@@ -20,12 +20,14 @@ class CreateStaffDetailsTable extends Migration
             $table->string('middle_Name')->nullable();
             $table->string('last_Name');
             $table->string('designation');
-            $table->string('college');
+            $table->integer('department_Id')->unsigned();
             $table->string('admin_Post');
             $table->string('tel_No');
             $table->date('date_Of_Employment');
             $table->integer('application_Number');
             $table->timestamps();
+
+            $table->foreign('department_id')->references('id')->on('departments');
         });
     }
 

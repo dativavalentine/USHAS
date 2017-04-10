@@ -25,9 +25,16 @@ class StoreUserRequest extends FormRequest
     {
         return [
             //
-            'username' => 'required',
             'staff_Id' => 'required',
-            'password' => 'required',
+            'first_name' => 'required',
+            'middle_name' => 'required',
+            'last_name' => 'required',
+            'designation' => 'required',
+            'admin_Post' =>'required',
+            'tel_No' => 'required',
+            'date_Of_Employment' => 'required',
+            'application_Number' => 'required',
+            'department_Id' => 'required',
         ];
     }
 }

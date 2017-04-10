@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDepartmentsTable extends Migration
+class CreateCollegesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateDepartmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('departments', function (Blueprint $table) {
+        Schema::create('colleges', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50);
-            $table->string('head_Of_Department',60);
-            $table->integer('staff_Id')->unsigned();
+            $table->string('college_Name');
             $table->timestamps();
 
-            $table->foreign('staff_Id')->references('id')->on('staff_details')->onDelete('cascade');
         });
     }
 
@@ -31,6 +28,6 @@ class CreateDepartmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departments');
+        Schema::dropIfExists('colleges');
     }
 }

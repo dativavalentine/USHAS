@@ -15,6 +15,10 @@ class Logins extends Model
         'username','staff_id','password'
     ];
 
+    protected $hidden = [
+        'password'
+    ];
+
     public function staff(){
         return $this->belongsTo(StaffDetails::class);
     }

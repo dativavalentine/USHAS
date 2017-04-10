@@ -12,22 +12,25 @@ class RegisterController extends Controller
     //
 
     public function register(StoreUserRequest $request){
-       /* $staff = new StaffDetails();
-        $staff->staff_Id = $request->username;
-        $staff->first_name = 'dativa';
-        $staff->middle_name = 'dativa';
-        $staff->last_name = 'dativa';
-        $staff->designation = 'dativa';
-        $staff->college = 'dativa';
-        $staff->admin_Post = 'dativa';
-        $staff->tel_No = 065045434334;
-        $staff->date_Of_Employment = '2017-03-29 12:01:38';
-        $staff->application_Number = 70;
+        $staff = new StaffDetails();
+        $staff->staff_Id = $request->staff_Id;
+        $staff->first_name = $request->first_name;
+        $staff->middle_name = $request->middle_name;
+        $staff->last_name = $request->last_name;
+        $staff->designation = $request->designation;
+        $staff->admin_Post = $request->admin_Post;
+        $staff->tel_No = $request->tel_No;
+        $staff->date_Of_Employment = $request->date_Of_Employment;
+        $staff->application_Number = $request->application_Number;
+        $staff->department()->associate($request->department_Id);
+        $staff->save();
+
         $login = new Logins();
-        $login->password = $request->password;
-        $login->username = $request->username;*/
+        $login->password = $request->last_name;
+        $login->username = $request->staff_Id;
+        $login->staff()->associate($staff->id);
+        $login->save();
 
-
-
+        return response($staff,200);
     }
 }

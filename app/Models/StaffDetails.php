@@ -13,7 +13,7 @@ class StaffDetails extends Model
 
     protected $fillable = [
         'staff_Id','first_Name','middle_Name',
-        'last_Name','designation','college','admin_Post',
+        'last_Name','designation','admin_Post',
         'tel_No','date_Of_Employment','application_Number'
     ];
 
@@ -21,4 +21,8 @@ class StaffDetails extends Model
     public function login(){
         return $this->hasOne(Logins::class);
     }
+  public function department(){
+        return $this->belongsTo(Department::class);
+  }
+
 }
