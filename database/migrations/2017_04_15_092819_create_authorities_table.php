@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Users extends Migration
+class CreateAuthoritiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class Users extends Migration
      */
     public function up()
     {
+        //Create a schema
         //
+        Schema::create('authorities', function (Blueprint $table) {
+            //$table->engine = 'InnoDB';
 
-        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email', 50);
-            $table->integer('staff_Id')->unsigned();
-            $table->string('password');
+            $table->integer('authority_Id');
+            $table->string('authority_Name');
             $table->timestamps();
-
-            $table->foreign('staff_Id')->references('id')->on('staff_details')->onDelete('cascade');
         });
     }
 
@@ -33,6 +32,7 @@ class Users extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        //Drop the table
+        Schema::dropIfExists('authorities');
     }
 }

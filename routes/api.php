@@ -9,6 +9,7 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/register','RegisterController@register');
 Route::post('/login','LoginController@login');
+Route::get('/login','LoginController@index');
 
 //Route za kupata data za house
 Route::post('/house', 'HouseController@store');
@@ -17,14 +18,16 @@ Route::get('/house','HouseController@index');
 //Route za apllication
 Route::post('/application','ApplicationController@store');
 Route::get('/application', 'ApplicationController@index');
+//Route::get('/{application}', 'ApplicationController@show');
 
 //Route za clearence
 Route::post('/clearence','ClearenceController@clearence');
 Route::get('/clearence', 'ClearenceController@clearence');
 
 //Applications routes
-Route::post('/applications','ApplicationsController@applications');
-Route::get('applications','ApplicationsController@applications');
+Route::post('/applications','ApplicationsController@store');
+Route::get('applications','ApplicationsController@index');
 
-Route::post('departments','DepartmentController@departments');
-Route::get('departments','DepartmentController@departments');
+//Route za department
+Route::post('departments','DepartmentController@store');
+Route::get('departments','DepartmentController@index');

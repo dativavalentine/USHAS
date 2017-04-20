@@ -17,10 +17,10 @@ class CreateApplicationsTable extends Migration
             $table->increments('id');
             $table->date('apply_Date');
             $table->integer('staff_id')->unsigned();
-            $table->string('application_Type', 100);
-            $table->string('approved_By_Officer', 200);
-            $table->string('approved_By_Housing_Officer', 200);
-            $table->string('confirmation', 50);
+            $table->string('application_Type');
+            $table->string('approved_By_Officer');
+            $table->string('approved_By_Housing_Officer');
+            $table->string('confirmation');
             $table->timestamps();
 
             $table->foreign('staff_id')->references('id')->on('staff_details')->onDelete('cascade');

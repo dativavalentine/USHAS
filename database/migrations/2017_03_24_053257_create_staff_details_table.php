@@ -27,6 +27,10 @@ class CreateStaffDetailsTable extends Migration
             $table->integer('application_Number');
             $table->timestamps();
 
+
+
+
+
             $table->foreign('department_id')->references('id')->on('departments');
         });
     }

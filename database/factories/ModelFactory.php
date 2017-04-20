@@ -45,7 +45,10 @@ $factory->define(App\Models\StaffDetails::class,function (Faker\Generator $faker
          'tel_No' => $faker->phoneNumber,
          'date_Of_Employment' => $faker->dateTimeThisCentury->format('Y-m-d'),
        'application_Number'=>$faker->randomDigitNotNull,
- ];
+
+
+
+        ];
 
 });
 
@@ -76,12 +79,15 @@ $factory->define(App\Models\College::class,function (Faker\Generator $faker){
 });
             /* seed logins*/
 $factory->define(App\Models\Logins::class,function (Faker\Generator $faker){
+    $roles=['1','2','3','4','5','6'];//I added the array of roles
     static $password;
     $staff = factory(App\Models\StaffDetails::class)->create();
     return [
         'username' => $staff->staff_Id,
         'staff_Id' => $staff->id,
         'password' => 'secret',
+        'role'=>$roles[rand(0,5)],//The role is assigned in array
+
     ];
 });
 
@@ -116,19 +122,53 @@ $factory->define(App\Models\House::class,function (Faker\Generator $faker){
 });
 
 
-//$factory->define( App\Models\Application::class, function(Faker\Generator $faker){
-//    $typeallocation =['new','reallocation','new','reallocation'];
+$factory->define( App\Models\Application::class, function(Faker\Generator $faker){
+    $typeallocation =['new','reallocation','new','reallocation'];
+
+  return[
+      'apply_Date'=>$faker->dateTimeThisCentury->format('Y-m-d'),
+       'staff_id'=> function(){
+      return factory(App\Models\StaffDetails::class)->create()->id;
+       },
+      'application_Type'=>$typeallocation[rand(0,3)],
+      'approved_By_Officer'=>$faker->text,
+       'approved_By_Housing_Officer'=>$faker->text,
+      'confirmation'=>$faker->text,
+
+  ];
+
+});
+
+
+//Autority factory
+$factory->define(App\Authority::class, function(Faker\Generator $faker){
+    $authorityNumber=['1','4','5','7','89','98','34'];
+    $authority = ['Staff','Housing Officer','Admin','Head of Department'];
+    return[
+        'authority_Id'=>$authorityNumber[rand(0,6)],
+        'authority_Name'=>$authority[rand(0,3)],
+    ];
+
+
+});
+
+//Will come back later
+
+//$factory->define(App\Role::class,function(Faker\Generator $faker){
+//    $roleName=['Staff','Housing Officer','H_O_D','admin'];
 //
-//  return[
-//      'apply_Date'=>$faker->dateTimeThisCentury->format('Y-m-d'),
-//       'staff_id'=> function(){
-//      return factory(App\Models\StaffDetails::class)->create()->id;
-//       },
-//      'application_Type'=>$typeallocation[rand(0,3)],
-//      'approved_By_Officer'=>$faker->text,
-//       'approved_By_Housing_Officer'=>$faker->text,
-//      'confirmation'=>$faker->text,
 //
-//  ];
+//    return[
+//        'role_Id'=>$faker->text,
+//         'role_Name'=>$roleName[rand(0,3)];
+//    'authority_Id'=> function()
+//    {
+//        return factory(App\Authority::class)->create()->id;
+//    },
+//
+//    ];
 //
 //});
+
+
+

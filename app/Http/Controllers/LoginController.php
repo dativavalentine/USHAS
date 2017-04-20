@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
+
+    public function index(){
+        $logins = Logins::all();
+
+        return response($logins,200);
+    }
     public function login(Request $request){
 
         $matchThese = ['username'=>$request->username,'password'=>$request->password];
