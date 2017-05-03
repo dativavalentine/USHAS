@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class HousesTableSeeder extends Seeder
+class ClearencesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,8 +11,8 @@ class HousesTableSeeder extends Seeder
      */
     public function run()
     {
-        //Enter number of houses you want
-        factory(App\Models\House::class,10)->create();
+        //Insert the number of clearence you want
 
+        factory(App\Models\Clearence::class,20)->create();
     }
 }

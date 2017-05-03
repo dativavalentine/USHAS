@@ -21,8 +21,8 @@ Route::get('/application', 'ApplicationController@index');
 //Route::get('/{application}', 'ApplicationController@show');
 
 //Route za clearence
-Route::post('/clearence','ClearenceController@clearence');
-Route::get('/clearence', 'ClearenceController@clearence');
+Route::post('/clearence','ClearenceController@store');
+Route::get('/clearence', 'ClearenceController@index');
 
 //Applications routes
 Route::post('/applications','ApplicationsController@store');

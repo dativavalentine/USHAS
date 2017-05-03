@@ -18,7 +18,7 @@ class CreateRolesTable extends Migration
            // $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->string('role_Id')->unique()->bcrypt('secret');
+            $table->string('role_Id')->unique();
             $table->string('role_Name');
             $table->integer('authority_Id')->unsigned();
             $table->timestamps();

@@ -52,7 +52,7 @@ $factory->define(App\Models\StaffDetails::class,function (Faker\Generator $faker
 
 });
 
-
+//colleges
             /*seed Departments*/
 $factory->define(App\Models\Department::class,function (Faker\Generator $faker){
 
@@ -91,7 +91,7 @@ $factory->define(App\Models\Logins::class,function (Faker\Generator $faker){
     ];
 });
 
-
+//
 $factory->define(App\User::class,function (Faker\Generator $faker){
 
     static $password;
@@ -103,7 +103,7 @@ $factory->define(App\User::class,function (Faker\Generator $faker){
     ];
 });
 
-
+//house factory
 
 $factory->define(App\Models\House::class,function (Faker\Generator $faker){
 
@@ -152,23 +152,38 @@ $factory->define(App\Authority::class, function(Faker\Generator $faker){
 
 });
 
+
+
+//Clearence factory
+$factory->define(  App\Models\Clearence::class, function(Faker\Generator $faker){
+    $remarksDetails=['Excellent', 'Good', 'Better','Best'];
+    $quantityDetails=['Two beds', 'Two chairs','Two tables'];
+    return[
+      'staff_id'=> function(){
+          return factory(App\Models\StaffDetails::class)->create()->id;
+      },
+      'description'=>$faker->text,
+      'quantity'=>$quantityDetails[rand(0,2)],
+        'remarks'=>$remarksDetails[rand(0,3)],
+  ];
+
+});
+
+
 //Will come back later
 
-//$factory->define(App\Role::class,function(Faker\Generator $faker){
-//    $roleName=['Staff','Housing Officer','H_O_D','admin'];
-//
-//
-//    return[
-//        'role_Id'=>$faker->text,
-//         'role_Name'=>$roleName[rand(0,3)];
-//    'authority_Id'=> function()
-//    {
-//        return factory(App\Authority::class)->create()->id;
-//    },
-//
-//    ];
-//
-//});
+$factory->define(App\Role::class,function(Faker\Generator $faker){
+    $roleName=['Normal Staff','Housing Officer','H_O_D','admin'];
 
 
+    return[
+        'role_Id'=>$faker->unique()->text,
+         'role_Name'=>$roleName[rand(0,3)],
+    'authority_Id'=> function()
+    {
+        return factory(App\Authority::class)->create()->id;
+    },
 
+    ];
+
+});
